@@ -46,7 +46,7 @@ class QuestionNew extends Component {
         }
         return (
             <div>
-                <Redirector currentLocation="/new-question"/>
+                <Redirector currentLocation="/add"/>
                 <Segment inverted>
                     <Form inverted>
                         <h4 className="center">Add new question!</h4>
