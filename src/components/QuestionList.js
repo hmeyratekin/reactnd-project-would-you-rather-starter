@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import Card from "react-bootstrap/Card";
 import Question from "./Question";
 import {Link} from "react-router-dom";
@@ -17,19 +17,20 @@ class QuestionList extends Component {
     constructor(props) {
         super(props);
     }
+
     render() {
         console.log(this.questionIds);
         console.log(this.questionIds);
-        console.log('this.type',this.props.type)
+        console.log('this.type', this.props.type)
 
         return (
-            <div label={this.props.type} >
+            <div label={this.props.type}>
                 <ul className="questions-List">
                     {this.props.questionIds.map((id) => (
                         <li key={id}>
                             <Card>
                                 <Card.Body>
-                                    <Question id={id} />
+                                    <Question id={id}/>
                                     <Link to={`/questions/${id}`}>
                                         <Button variant="warning">Details</Button>
                                     </Link>
@@ -49,7 +50,7 @@ QuestionList.propTypes = {
 };
 
 
-const mapStateToProps = ({ questions, authedUser , id }, ownProps) =>  {
+const mapStateToProps = ({questions, authedUser, id}, ownProps) => {
 
     const questionsArray = Object.keys(questions).map(question => questions[question]);
 
@@ -58,19 +59,19 @@ const mapStateToProps = ({ questions, authedUser , id }, ownProps) =>  {
             const hasLoggedInUserAnswered = question.optionOne.votes.includes(authedUser) ||
                 question.optionTwo.votes.includes(authedUser);
 
-            return  ownProps.type === 'answered'
+            return ownProps.type === 'answered'
                 ? hasLoggedInUserAnswered
                 : !hasLoggedInUserAnswered;
         });
 
-    console.log("filteredQuestions",filteredQuestions);
+    console.log("filteredQuestions", filteredQuestions);
 
     // questions are sorted by time
     return {
         id,
         questionIds: filteredQuestions
             .sort((a, b) => b.timestamp - a.timestamp)
-            .map(({ id }) => id),
+            .map(({id}) => id),
     };
 };
 

@@ -1,46 +1,41 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import Question from "./Question";
+import React, {Component} from "react";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tabs";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import {Link} from 'react-router-dom'
 import Redirector from "./Redirector";
-
-import {handleInitialData} from "../actions/shared";
 import QuestionList from "./QuestionList";
 
 class Dashboard extends Component {
-state = {
-  defaultTab: "Unanswered"
-}
+    state = {
+        defaultTab: "Unanswered"
+    }
 
 
-handleTab = (e) => {
-  this.setState(() => ({
-    defaultTab: e
-  }))
-}
-  render() {
+    handleTab = (e) => {
+        this.setState(() => ({
+            defaultTab: e
+        }))
+    }
 
-    return (
-      <div className="dashboard">
-        <Redirector currentLocation="/"/>
-        <Tabs defaultActiveKey="profile" id="HomePage"   activeKey={this.state.defaultTab} onSelect={this.handleTab}>
+    render() {
 
-          <Tab  htmlFor="Unanswered" eventKey="Unanswered" title="Unanswered questions">
-            <QuestionList type="unanswered"></QuestionList>
-          </Tab>
+        return (
+            <div className="dashboard">
+                <Redirector currentLocation="/"/>
+                <Tabs defaultActiveKey="profile" id="HomePage" activeKey={this.state.defaultTab}
+                      onSelect={this.handleTab}>
 
-          <Tab htmlFor="Answered" eventKey="Answered" title="Answered questions">
-           <QuestionList type="answered"></QuestionList>
-          </Tab>
+                    <Tab htmlFor="Unanswered" eventKey="Unanswered" title="Unanswered questions">
+                        <QuestionList type="unanswered"></QuestionList>
+                    </Tab>
 
-        </Tabs>
-      </div>
-    );
-  }
+                    <Tab htmlFor="Answered" eventKey="Answered" title="Answered questions">
+                        <QuestionList type="answered"></QuestionList>
+                    </Tab>
+
+                </Tabs>
+            </div>
+        );
+    }
 }
 
 

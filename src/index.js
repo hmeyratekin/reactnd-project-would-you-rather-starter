@@ -10,12 +10,12 @@ import thunk from "redux-thunk";
 import logger from "./middleware/logger";
 
 
-const store = configureStore({ reducer: reducer, middleware: [thunk, logger] })
+const store = configureStore({reducer: reducer, middleware: [thunk, logger]})
 
 
 ReactDOM.render(
-    <Provider store = {store}>
-        <App />
+    <Provider store={store}>
+        <App/>
     </Provider>,
     document.getElementById('root')
 );
