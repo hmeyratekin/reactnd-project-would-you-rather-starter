@@ -1,16 +1,14 @@
 import React from 'react'
-import {useLocation} from 'react-router-dom'
-import PageNotFoundJPG from "../img/404.jpg";
+import PageNotFoundJPG from "../img/404.png";
 
 
 function PageNotFound() {
-    const {path} = useLocation()
 
     return (
         <div className="center">
 
             <img
-                width={250}
+                width={500}
                 className="rounded-circle"
                 src={PageNotFoundJPG}
                 alt="404"

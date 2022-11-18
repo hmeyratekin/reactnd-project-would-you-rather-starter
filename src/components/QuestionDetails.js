@@ -11,6 +11,7 @@ import {faCheck} from "@fortawesome/free-solid-svg-icons";
 import {Container, Form, Progress, Radio, Segment} from "semantic-ui-react";
 import 'semantic-ui-css/semantic.min.css';
 import {handleQuestionAnswer} from "../actions/questions";
+import {Redirect} from "react-router-dom";
 
 class QuestionDetails extends Component {
 
@@ -36,9 +37,14 @@ class QuestionDetails extends Component {
 
     render() {
         const {question} = this.props;
+        if (!question) {
+            console.log("Redirecting to 404");
+            return <Redirect to='/404' />;
+        }
         const {name, avatar, timestamp, optionOne, optionTwo} = question;
 
         return (
+
             <Card>
                 <Redirector currentLocation="/questions/:question_id"/>
                 <Card.Body>
@@ -128,8 +134,10 @@ class QuestionDetails extends Component {
 function mapStateToProps({authedUser, users, questions}) {
     let url = window.location.pathname;
     let id = url.substring(url.lastIndexOf('/') + 1);
-
     const question = questions[id];
+
+    if (!question)
+        return {question};
 
     const optionOne = question.optionOne
     const optionTwo = question.optionTwo
